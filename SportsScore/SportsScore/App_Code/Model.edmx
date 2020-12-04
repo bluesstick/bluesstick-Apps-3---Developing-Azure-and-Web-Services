@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SportsScoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SportsScore.dbo.Matches' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Matches">
+          <Key>
+            <PropertyRef Name="HomeTeamScore" />
+            <PropertyRef Name="HomeTeamId" />
+            <PropertyRef Name="AwayTeamScore" />
+            <PropertyRef Name="AwayTeamId" />
+            <PropertyRef Name="MVPPlayer" />
+          </Key>
+          <Property Name="HomeTeamScore" Type="int" Nullable="false" />
+          <Property Name="HomeTeamId" Type="int" Nullable="false" />
+          <Property Name="AwayTeamScore" Type="int" Nullable="false" />
+          <Property Name="AwayTeamId" Type="int" Nullable="false" />
+          <Property Name="MVPPlayer" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SportsScore.dbo.Players' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="PlayerName" />
+            <PropertyRef Name="Age" />
+            <PropertyRef Name="Weight" />
+            <PropertyRef Name="BirthPlace" />
+          </Key>
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="PlayerName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="int" Nullable="false" />
+          <Property Name="BirthPlace" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SportsScore.dbo.Teams' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="TeamName" />
+            <PropertyRef Name="TeamWebSite" />
+            <PropertyRef Name="TeamConference" />
+            <PropertyRef Name="TeamLogo" />
+          </Key>
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="TeamName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TeamWebSite" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TeamConference" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TeamLogo" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SportsScoreModelStoreContainer">
+          <EntitySet Name="Matches" EntityType="Self.Matches" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Matches].[HomeTeamScore] AS [HomeTeamScore], 
+    [Matches].[HomeTeamId] AS [HomeTeamId], 
+    [Matches].[AwayTeamScore] AS [AwayTeamScore], 
+    [Matches].[AwayTeamId] AS [AwayTeamId], 
+    [Matches].[MVPPlayer] AS [MVPPlayer]
+    FROM [dbo].[Matches] AS [Matches]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Players" EntityType="Self.Players" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Players].[TeamId] AS [TeamId], 
+    [Players].[PlayerName] AS [PlayerName], 
+    [Players].[Age] AS [Age], 
+    [Players].[Weight] AS [Weight], 
+    [Players].[BirthPlace] AS [BirthPlace]
+    FROM [dbo].[Players] AS [Players]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Teams" EntityType="Self.Teams" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Teams].[TeamId] AS [TeamId], 
+    [Teams].[TeamName] AS [TeamName], 
+    [Teams].[TeamWebSite] AS [TeamWebSite], 
+    [Teams].[TeamConference] AS [TeamConference], 
+    [Teams].[TeamLogo] AS [TeamLogo]
+    FROM [dbo].[Teams] AS [Teams]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SportsScoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="HomeTeamScore" />
+            <PropertyRef Name="HomeTeamId" />
+            <PropertyRef Name="AwayTeamScore" />
+            <PropertyRef Name="AwayTeamId" />
+            <PropertyRef Name="MVPPlayer" />
+          </Key>
+          <Property Name="HomeTeamScore" Type="Int32" Nullable="false" />
+          <Property Name="HomeTeamId" Type="Int32" Nullable="false" />
+          <Property Name="AwayTeamScore" Type="Int32" Nullable="false" />
+          <Property Name="AwayTeamId" Type="Int32" Nullable="false" />
+          <Property Name="MVPPlayer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="PlayerName" />
+            <PropertyRef Name="Age" />
+            <PropertyRef Name="Weight" />
+            <PropertyRef Name="BirthPlace" />
+          </Key>
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Int32" Nullable="false" />
+          <Property Name="BirthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="TeamName" />
+            <PropertyRef Name="TeamWebSite" />
+            <PropertyRef Name="TeamConference" />
+            <PropertyRef Name="TeamLogo" />
+          </Key>
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="TeamName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TeamWebSite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TeamConference" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TeamLogo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SportsScoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Matches" EntityType="Self.Match" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SportsScoreModelStoreContainer" CdmEntityContainer="SportsScoreEntities">
+          <EntitySetMapping Name="Matches">
+            <EntityTypeMapping TypeName="SportsScoreModel.Match">
+              <MappingFragment StoreEntitySet="Matches">
+                <ScalarProperty Name="HomeTeamScore" ColumnName="HomeTeamScore" />
+                <ScalarProperty Name="HomeTeamId" ColumnName="HomeTeamId" />
+                <ScalarProperty Name="AwayTeamScore" ColumnName="AwayTeamScore" />
+                <ScalarProperty Name="AwayTeamId" ColumnName="AwayTeamId" />
+                <ScalarProperty Name="MVPPlayer" ColumnName="MVPPlayer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="SportsScoreModel.Player">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="BirthPlace" ColumnName="BirthPlace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="SportsScoreModel.Team">
+              <MappingFragment StoreEntitySet="Teams">
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="TeamWebSite" ColumnName="TeamWebSite" />
+                <ScalarProperty Name="TeamConference" ColumnName="TeamConference" />
+                <ScalarProperty Name="TeamLogo" ColumnName="TeamLogo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
